@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta charset="UTF-8">
+<title>Tour Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+
+<style>
+body {
+  background: #f5f5f5;
+  font-size: 15px;
+}
+
+/* Banner */
+.tour-banner img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+}
+
+/* Title */
+.tour-title {
+  text-align: center;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+/* Info Bar */
+.tour-info-box {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  gap: 10px;
+}
+
+.tour-info-box div {
+  flex: 1;
+}
+
+.tour-info-box i {
+  color: #ffae00;
+  font-size: 22px;
+}
+
+/* Cards */
+.card-box {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  border-radius: 8px;
+}
+
+/* Included / Excluded */
+.list-icon {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-icon li {
+  margin-bottom: 8px;
+}
+
+.list-icon li i {
+  margin-right: 8px;
+}
+
+.included i {
+  color: green;
+}
+
+.excluded i {
+  color: goldenrod;
+}
+
+/* Yellow Button */
+.btn-primary {
+  background-color: #ffae00;
+  border-color: #ffae00;
+  color: #000;
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 10px 22px;
+  box-shadow: 0 4px 12px rgba(255,174,0,0.4);
+}
+
+.btn-primary:hover {
+  background-color: #e69c00;
+  border-color: #e69c00;
+  color: #000;
+}
+
+/* ========================= */
+/* MOBILE RESPONSIVE RULES */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  /* Banner */
+  .tour-banner img {
+    height: 250px;
+  }
+
+  /* Info Bar stacks */
+  .tour-info-box {
+    flex-wrap: wrap;
+  }
+
+  .tour-info-box div {
+    width: 50%;
+    margin-bottom: 15px;
+  }
+
+  /* Text spacing */
+  .card-box {
+    padding: 15px;
+  }
+
+  /* Button full width */
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .tour-info-box div {
+    width: 100%;
+  }
+
+  .tour-title {
+    font-size: 20px;
+  }
+
+}
+.whatsapp-float,
+.facebook-float {
+  position: fixed;
+  right: 12px;        /* smaller for mobile */
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 22px;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* WhatsApp */
+.whatsapp-float {
+  bottom: 20px;
+  background-color: #25d366;
+  color: #fff;
+}
+
+/* Facebook */
+.facebook-float {
+  bottom: 78px;
+  background-color: #1877f2;
+  color: #fff;
+}
+
+.whatsapp-float i,
+.facebook-float i {
+  line-height: 48px;
+}
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Back to Tours Button (Force Style) */
+.back-tour-btn {
+    display: inline-block !important;
+    background: #f4b400 !important;
+    color: #ffffff !important;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none !important;
+    border: none;
+    transition: all 0.25s ease;
+}
+
+/* Hover */
+.back-tour-btn:hover {
+    background: #d89c00 !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    transform: translateY(-1px);
+}
+
+/* Icon spacing */
+.back-tour-btn i {
+    margin-right: 6px;
+}
+
+/* new */
+.tour-day {
+  margin-bottom: 15px;
+}
+
+.tour-day strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.tour-day ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.tour-day li {
+  margin-bottom: 4px;
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+  .tour-day {
+    margin-bottom: 12px;
+  }
+}
+
+/* Customize Box */
+.customize-box {
+  text-align: center;
+  background: linear-gradient(135deg, #fff8e1, #ffffff);
+  border: 1px solid #ffe082;
+}
+
+.customize-box h5 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.customize-box p {
+  margin-bottom: 15px;
+  color: #555;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Banner -->
+<div class="tour-banner">
+  <img id="tourImage" alt="Tour Image">
+</div>
+
+<div class="container py-4">
+
+  <h3 class="tour-title" id="tourTitle"></h3>
+
+  <!-- Info Bar -->
+  <div class="tour-info-box">
+    <div>
+      <i class="fa fa-clock-o"></i><br>
+      <strong>Duration</strong><br>
+      <span id="tourDuration"></span>
+    </div>
+    <div>
+      <i class="fa fa-users"></i><br>
+      <strong>Max People</strong><br>
+      <span id="tourPeople"></span>
+    </div>
+    <div>
+      <i class="fa fa-usd"></i><br>
+      <strong>Price</strong><br>
+      <span id="tourPrice"></span>
+    </div>
+    <div>
+      <i class="fa fa-map"></i><br>
+      <strong>Tour Type</strong><br>
+      <span id="tourType"></span>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <div class="card-box">
+    <h5>TOUR OVERVIEW</h5>
+    <p id="tourDescription"></p>
+  </div>
+
+<!-- Tour Plan -->
+<!-- <div class="card-box">
+  <h5>Tour Plan</h5>
+  <ul>
+    <li><strong>Day 1:</strong> Arrival & Sigiriya Lion Rock</li>
+    <li><strong>Day 2:</strong> Dambulla Cave Temple & Departure</li>
+  </ul>
+</div> -->
+<!-- Tour Plan -->
+<div class="card-box">
+  <h5>Tour Plan</h5>
+  <div id="tourPlan"></div>
+</div>
+
+  <!-- Included / Excluded -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card-box included">
+        <h5>Included</h5>
+        <ul class="list-icon" id="includedList"></ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card-box excluded">
+        <h5>Excluded</h5>
+        <ul class="list-icon" id="excludedList"></ul>
+      </div>
+    </div>
+  </div>
+<!-- Customize Tour Section -->
+<div class="card-box customize-box">
+  <h5>Customize Your Tour</h5>
+  <p>
+    Want to adjust this package? Add or remove destinations, change hotel category, 
+    or create your own itinerary? We are happy to design a personalized tour just for you.
+  </p>
+
+  <a href="https://wa.me/94713010652" target="_blank" class="btn btn-primary">
+    <i class="fa fa-whatsapp"></i> Contact Us to Customize
+  </a>
+</div>
+
+<a href="index.html#tour-prices" class="back-tour-btn">
+  <i class="fa fa-arrow-left"></i> Back to Tours
+</a>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const tours = {
+  1: {
+    title: "Sri Lanka Two Days Tour",
+    duration: "1 Days",
+    people: "20 Persons",
+    price: "$191.00",
+    type: "Day Tour",
+    image: "images/5 day tour.jpg",
+    description: "Experience Sri Lanka’s cultural heart on this one-day trip to Kandy. Visit the Millennium Elephant Foundation or the Pinnawala Elephant Orphanage, explore the sacred Temple of the Tooth Relic, and enjoy a tour of a tea factory and plantation. Unwind by Kandy Lake and the scenic View Point, with an optional stop at a herbal and spice garden. An ideal journey for travelers wanting to discover culture, nature, and tradition all in one memorable day.",
+    plan: [
+    {
+      day: "Day 1",
+      title: "Kandy Day Tour Itinerary",
+      activities: [
+        "Kandy Day Tour Itinerary - Get the chance to see elephants at close range while learning about their care, protection, and conservation efforts.",
+        "Millennium Elephant Foundation / Pinnawala Elephant Orphanage - Enjoy an up-close encounter with elephants and gain insight into ongoing elephant care and conservation programs.",
+        "Temple of the Sacred Tooth Relic - Discover Sri Lanka’s most revered Buddhist temple, situated in the center of Kandy.",
+        "Tea Factory & Tea Plantation - Visit a working tea factory and plantation to see how renowned Ceylon tea is carefully processed and produced.",
+        "Kandy Lake & View Point - Take in beautiful panoramic views of Kandy city and unwind beside the scenic Kandy Lake.",
+        "Herbal & Spice Garden - Optional stop at a herbal and spice garden to explore the variety of Sri Lankan herbs and spices and their uses.",
+      ]
+    }
+  ],
+    included: [
+      "All attraction entrance fees",
+      "Highway tickets and parking fees",
+      "English speaking professional driver",
+      "Private air-conditioned vehicle",
+    ],
+    excluded: [
+      "Food & Drinks",
+      "Entrance & Activities Fees"
+    ]
+    
+  },
+
+  2: {
+   title: "Ella Day Tour - Departing from Any Location in Sri Lanka",
+    duration: "1 Days",
+    people: "20 Persons",
+    price: "$256.00",
+    type: "Day Tour",
+    image: "images/ella tour.jpeg",
+    description: "Explore the wonders of Sri Lanka on a memorable journey that brings you to the famous Nine Arches Bridge in Ella, where you can enjoy the sight of trains passing through stunning scenery. Visit the Udawalawe Elephant Orphanage to see rescued elephants in a safe and caring environment. Take in the beauty of Ravana Falls, one of the country’s most spectacular waterfalls. Climb Little Adam’s Peak to enjoy sweeping panoramic views that showcase the charm of Sri Lanka’s hill country. Finish your trip with a charming mini train ride through Ella’s lush landscapes, leaving you with unforgettable memories of this captivating destination.",
+    plan: [
+    {
+      day: "Day 1",
+      title: "Nine Arches Bridge",
+      activities: [
+        "Nine Arches Bridge - The magnificent Nine Arches Bridge stands as a highlight of the region. Located between Ella and Demodara stations, this historic bridge is a remarkable example of early 20th-century engineering brilliance.",
+        "Ella Train Trips - The Ella train journey is considered one of the most scenic rail experiences in Sri Lanka, and even worldwide! Hop aboard to enjoy stunning views of rolling tea plantations, misty mountains, bridges, and sweeping valleys.",
+        "Little Adams Peak - Rising to 1141 m, the hike from the entrance typically takes about 30–45 minutes. Once at the top, visitors are rewarded with breathtaking scenery and spectacular 360-degree panoramic views.",
+        "Ravana waterfall - Ravana Falls is among the broadest and most striking waterfalls in the country. Visitors can carefully step across nearby rocks to admire the cascading water from a closer vantage point.",
+        "Elephant orphanage udawalawa - 4th Stop: Here you can watch a lively herd of around 20 to 30 young and adolescent elephants, who gather for feeding sessions held four times daily.",
+      ]
+    }
+  ],
+    included: [
+      "Air-Conditioned Private Vehicle",
+      "English Speaking Professional Driver",
+      "Driver's Accommodation & Meals",
+      "Pickup & Drop Off",
+      "Fuel & Parking Fees",
+      "24 Hours Service",
+      "Unlimited Mileage/Kilometer for entire round tour",
+      "Your Accommodation",
+    ],
+    excluded: [
+      "Food & Drinks",
+      "Entrance & Activities Fees"
+    ]
+  },
+
+  3: {
+    title: "Galle Day Tour - Departing from Any Location in Sri Lanka",
+    duration: "1 Days",
+    people: "20 Persons",
+    price: "$141.00",
+    type: "Day Tour",
+    image: "images/galle tour.jpeg",
+    description: "This full-day guided tour to Galle combines nature, history, and culture into one memorable experience. The journey includes a visit to a Sea Turtle Hatchery, exploration of the historic Galle Dutch Fort, a peaceful boat safari along the Bentota River, and stops at the Tsunami Memorial and Moonstone Mine Centre to learn more about Sri Lanka’s heritage. It’s an excellent choice for couples, families, and small groups seeking a comfortable and enriching day trip.",
+    plan: [
+    {
+      day: "Day 1",
+      title: "Galle Day Tour Itinerary",
+      activities: [
+        "Galle Day Tour Itinerary - Visit a sea turtle hatchery to observe various turtle species and understand ongoing conservation programs.",
+        "Galle Dutch Fort - Walk through the historic Galle Dutch Fort, a UNESCO-listed site known for its colonial charm and beautiful coastal views.",
+        "Bentota River Boat Ride - Experience a peaceful boat safari on the Bentota River, surrounded by mangroves and diverse wildlife.",
+        "Tsunami Memorial - Stop at the Tsunami Memorial to learn about the devastating 2004 tsunami and its effects on Sri Lanka.",
+        "Moonstone Mine Centre - See how Sri Lanka’s renowned moonstones are extracted and prepared at a traditional mining and processing center.",
+      ]
+    }
+  ],
+    included: [
+      "All attraction entrance fees",
+      "Highway tickets and parking fees",
+      "English speaking professional driver",
+      "Private air-conditioned vehicle",
+    ],
+    excluded: [
+      "Food & Drinks",
+      "Entrance & Activities Fees"
+    ]
+  },
+
+  4: {
+      title: "Sigiriya Day Tour - Departing from Any Location in Sri Lanka",
+    duration: "1 Days",
+    people: "20 Persons",
+    price: "$277.00",
+    type: "Day Tour",
+    image: "images/sigiriya tour.jpeg",
+    description: "This one-day Sigiriya tour brings together culture, adventure, and wildlife in a single memorable experience. Start your journey with a visit to the Golden Cave Temple in Dambulla, then climb either Sigiriya Rock Fortress or Pidurangala Rock to enjoy spectacular panoramic views. Conclude the day with an exciting wild elephant safari, making this tour a great choice for both nature enthusiasts and history lovers.",
+    plan: [
+    {
+      day: "Day 1",
+      title: "Sigiriya Day Tour Itinerary",
+      activities: [
+        "Sigiriya Day Tour Itinerary - Hotel pickup in a comfortable private air-conditioned vehicle to begin your journey.",
+        "Golden Cave Temple – Dambulla - Explore the UNESCO-listed Dambulla Cave Temple, renowned for its ancient murals and impressive Buddha statues.",
+        "Temple of the Sacred Tooth Relic - Visit Sri Lanka’s most revered Buddhist temple, situated in the center of Kandy.",
+        "Sigiriya or Pidurangala Rock Climbing - Hike either the famous Sigiriya Rock Fortress or nearby Pidurangala Rock to enjoy breathtaking panoramic views.",
+       "Wild Elephant Safari - Enjoy a thrilling wild elephant safari in a national park (jeep and entrance fees not included).",
+      ]
+    }
+  ],
+    included: [
+      "All attraction entrance fees (excluding safari entrance & jeep)",
+      "Highway tickets and parking fees",
+      "English speaking professional driver",
+      "Private air-conditioned vehicle",
+      "Lunch",
+    ],
+    excluded: [
+      "Safari entrance tickets and jeep",
+      "Personal expenses"
+    ]
+  },
+
+    5: {
+     title: "Sigiriya and Kandy 2 Days Private Tour with HB Deluxe Accommodation",
+    duration: "2 Days",
+    people: "20 Persons",
+    price: "$441.00",
+    type: "Day Tour",
+    image: "images/2 day img.jpg",
+    description: "Discover the highlights of Sigiriya and Kandy on this two-day private tour, featuring deluxe accommodation on a half-board basis and a dedicated guide throughout your journey. Visit the iconic Sigiriya Lion Rock, explore the remarkable Dambulla Golden Temple, experience the traditional charm of Hiriwadunna village, and enjoy an exciting wild elephant safari. In Kandy, tour the sacred Temple of the Tooth Relic, walk around the scenic Kandy Lake, explore the lush Peradeniya Botanical Garden, and admire the historic Matale Hindu Temple. Blending culture, spirituality, nature, and adventure, this tour offers a perfect balance of exploration and relaxation for an unforgettable getaway.",
+    plan: [
+    {
+      day: "Day 1",
+      title: "Arrival & Sigirya Lion Rock ",
+      activities: [
+       "Sigiriya Lion Rock - Sigiriya, a UNESCO World Heritage Site in Sri Lanka, is home to the famous Lion Rock fortress. Known for its ancient frescoes, remarkable history, and breathtaking summit views, it remains one of the country’s most treasured cultural landmarks.",
+       "Dambulla Cave Temple – Dambulla Cave Temple, also a UNESCO World Heritage Site, is the largest cave temple complex in Sri Lanka. The site showcases impressive Buddha statues, detailed wall paintings, and sacred relics housed within five historic caves.",
+       "Hiriwadunna Village & Lake Adventure - The Hiriwadunna Village Tour provides a genuine experience of rural Sri Lankan life, including a bullock cart ride, a peaceful boat journey, and traditional village meals amid scenic natural surroundings.",
+       "Habarana Elephant Safari - The Habarana Elephant Safari offers an exciting journey into Sri Lanka’s wilderness, where visitors can observe wild elephants and other wildlife while exploring beautiful landscapes on a jeep safari.",
+       "Sigiriya - HB Deluxe Accommodation - Overnight stay in Sigiriya with HB Deluxe Accommodation including: 1. Four-star (premium) hotel stay 2. Private bathroom facilities 3. Dinner included.",
+      ]
+    },
+      {
+      day: "Day 2",
+      title: "Sigiriya Day Tour Itinerary",
+      activities: [
+       "Sigiriya Day Tour Itinerary - Hotel pickup in a comfortable private air-conditioned vehicle to begin the tour.",
+       "Golden Cave Temple – Dambulla - Explore the UNESCO-listed Dambulla Cave Temple, celebrated for its ancient murals and impressive Buddha statues.",
+       "Temple of the Sacred Tooth Relic - Visit Sri Lanka’s most revered Buddhist temple, situated in the heart of Kandy.",
+       "Sigiriya or Pidurangala Rock Climbing - Hike either the iconic Sigiriya Rock Fortress or Pidurangala Rock to enjoy spectacular panoramic views.",
+       "Wild Elephant Safari - Enjoy an exciting wild elephant safari in a national park (jeep and entrance fees not included).",
+      ]
+    }
+    
+  ],
+    included: [
+      "Air-Conditioned Private Vehicle",
+      "English Speaking Professional Driver",
+      "Driver's Accommodation & Meals",
+      "Pickup & Drop Off",
+      "Fuel & Parking Fees",
+      "24 Hours Service",
+      "Unlimited Mileage/Kilometer for entire round tour",
+      "Your Accommodation",
+    ],
+    excluded: [
+      "Food & Drinks",
+      "Entrance & Activities Fees"
+    ]
+  },
+
+  6: {
+     title: "Sri Lanka 5 Days Tour with 4 Star Hotels and Private Transportation",
+    duration: "5 Days",
+    people: "20 Persons",
+    price: "$979.00",
+    type: "Round Tour",
+    image: "images/2 day img.jpg",
+    description: "Experience the best of Sri Lanka in just 5 days and 4 nights with our unforgettable tour package! Enjoy stays in premium 4-star hotels on a half-board basis, complemented by private transportation throughout your journey. Explore over 20 must-see attractions across 10 districts, including the thrilling Yala Safari, the iconic Sigiriya Rock Fortress, the scenic train ride through Ella, Nine Arches Bridge, Little Adam’s Peak, the Sacred Tooth Relic Temple in Kandy, Ramboda Falls, the historic Galle Fort, and a serene Bentota River cruise. Immerse yourself in the perfect mix of adventure, culture, and relaxation—exclusively with Ceylon Paradise Travels. Let us make your dream holiday a reality on the paradise island of Sri Lanka.",
+    plan: [
+   {
+  day: "Day 1",
+  title: "Arrival & Dambulla Cave Temple",
+  activities: [
+    "Dambulla Cave Temple - Dambulla Royal Cave Temple - A sacred pilgrimage site for over 22 centuries.",
+    "Hiriwadunna Village & Lake Adventure – Experience traditional Sri Lankan village life in Hiriwadunna, showcasing the relaxed pace and charm of rural living.",
+    "Sigiriya Lion Rock - Begin your journey with a visit to the UNESCO World Heritage Site, the iconic Sigiriya Rock Fortress.",
+    "Stay in comfort with our 3–4 star hotel accommodations."
+  ]
+},
+{
+  day: "Day 2",
+  title: "Sigiriya & Dambulla",
+  activities: [
+    "Matale Hindu Kovil - Also known as Sri Muthumariamman Temple, this vibrant Hindu shrine features stunning Dravidian architecture, intricate carvings, and a towering gopuram.",
+    "Sri Dalada Maligawa - Visit the temple that houses the Sacred Tooth Relic of the Buddha, one of the holiest Buddhist shrines in the world.",
+    "Kandy Lake Club - Cultural Dance Show – Enjoy an energetic showcase of Sri Lankan arts, dance, and culture, a must-see in the historic city of Kandy.",
+    "Herbal and Spice Garden - Explore aromatic cinnamon, cardamom, and Ayurvedic plants, and learn about their uses in cooking, healing, and traditional medicine.",
+    "Stay in comfort with our 3–4 star hotel accommodations."
+  ]
+},
+{
+  day: "Day 3",
+  title: "Kandy City Tour",
+  activities: [
+    "Gem Museum Tour - Discover Sri Lanka’s gem heritage, featuring dazzling sapphires, rubies, and moonstones, along with insights into mining, cutting, and jewelry craftsmanship.",
+    "Ambuluwawa Tower - Climb the tower for 360° panoramic views of mountains, forests, and rivers. This multi-religious site symbolizes unity and natural beauty.",
+    "Ramboda Falls - Admire the stunning 109m cascade in Sri Lanka’s hill country, offering breathtaking scenery and a peaceful natural escape.",
+    "Bluefield Tea Factory - Visit one of Nuwara Eliya’s popular tea factories to learn about the production of world-famous Ceylon tea.",
+    "Ella Scenic Train Ride - Enjoy the scenic train journey through lush tea plantations, misty mountains, and spectacular landscapes—one of the most beautiful rides in the world.",
+    "Stay in comfort with our 3–4 star hotel accommodations."
+  ]
+},
+{
+  day: "Day 4",
+  title: "Nuwara Eliya via Ramboda Falls",
+  activities: [
+    "Nine Arches Bridge - Marvel at the majestic Nine Arch Bridge between Ella and Demodara stations, an engineering marvel of the early 20th century.",
+    "Little Adam's Peak View Point - Hike 1141 m to the summit in 30-45 minutes for incredible 360° panoramic views with rolling clouds.",
+    "Ravana Waterfall - Steeped in legend, this waterfall is believed to be where King Ravana hid Sita in a cave after abducting her, according to the epic Ramayan.",
+    "Yala National Park Sri Lanka - Home to 44 mammal species and 215 bird species, including the world’s largest concentration of leopards.",
+    "Stay in comfort with our 3–4 star hotel accommodations."
+  ]
+},
+{
+  day: "Day 5",
+  title: "Ella Adventures",
+  activities: [
+    "Coconut Tree Hill - A must-visit spot in Mirissa, set within a private coconut estate and featured on many travelers’ Instagram profiles.",
+    "Turtle Beach - A tranquil cove in Talpe, near Galle, known for clear waters and frequent sea turtle sightings. Ideal for snorkeling or observing turtles.",
+    "Kosgoda Sea Turtle Conservation Project - Learn about efforts to protect endangered turtles, see hatchlings, and support marine conservation.",
+    "Galle Dutch Fort - Built by the Portuguese in 1588 and expanded by the Dutch in the 17th century, now a lively coastal community.",
+    "Madu River Safari | මාදු ගගේ | Nilwala Boat Safari - Explore the biodiversity-rich Bentota River, lined with dense freshwater mangroves.",
+    "Stay in comfort with our 3–4 star hotel accommodations."
+  ]
+}  
+  ],
+    included: [
+      "All attraction entrance fees (excluding safari entrance & jeep)",
+      "Highway tickets and parking fees",
+      "English speaking professional driver",
+      "Private air-conditioned vehicle",
+      "Lunch",
+    ],
+    excluded: [
+      "Safari entrance tickets and jeep",
+      "Personal expenses"
+    ]
+  },
+
+   7: {
+     title: "Sri Lanka 7 Days Tour with 4 Star Hotels and Private Transportation",
+    duration: "7 Days",
+    people: "20 Persons",
+    price: "$1177.00",
+    type: "Round Tour",
+    image: "images/7day tour.jpeg",
+    description: "We are here to help you organize the perfect holiday you’ve always dreamed of on the “Paradise Island” of Sri Lanka. Our 7-day (6-night) travel package is designed so you’ll experience not only all the famous attractions but also some unique experiences that are exclusive to Ceylon Paradise Travels. Guests will stay in Sri Lanka’s finest 4-star hotels on a half-board basis. Highlights include Yala Safari, Sigiriya, Ella’s Nine Arches Bridge, the scenic Ella train journey, Kandy’s Sacred Tooth Relic Temple, Ramboda Waterfall, Little Adam’s Peak hike, Nuwara Eliya, Galle Fort, and a Bentota River tour—just to name a few. In total, you’ll visit 28 attractions across 10 districts of Sri Lanka, all while enjoying private transportation throughout your journey.",
+    plan: [
+    {
+  day: "Day 1",
+  title: "Arrival & Pidurangala Rock",
+  activities: [
+    "Pidurangala Rock - Enjoy a short hike to Pidurangala Rock and take in the stunning scenery.",
+    "Stay in comfort with our 3–4 star hotel accommodations"
+  ]
+},
+{
+  day: "Day 2",
+  title: "Sigiriya & Dambulla",
+  activities: [
+    "Sigiriya Lion Rock - Start your day with a visit to the UNESCO World Heritage Site, the iconic Sigiriya Rock Fortress.",
+    "Hiriwadunna Village & Lake Adventure - Experience traditional Sri Lankan village life in Hiriwadunna, where you can enjoy the relaxed rhythm of rural living.",
+    "Dambulla Cave Temple - Next, visit the Dambulla Royal Cave Temple, a sacred pilgrimage site for over 22 centuries.",
+    "Dambulla Dedicated Economic Center - Explore the local market and enjoy fresh fruits and vegetables at Dambulla."
+  ]
+},
+{
+  day: "Day 3",
+  title: "Kandy City Tour",
+  activities: [
+    "Sri Dalada Maligawa - Visit the temple housing the Sacred Tooth Relic of the Buddha, one of the holiest shrines in the Buddhist world.",
+    "Kandy Lake Club - Cultural Dance Show - Enjoy a vibrant display of Sri Lankan arts, dance, and culture at the Kandy Lake Club.",
+    "Sri Muthumariamman Temple - A magnificent Hindu temple showcasing Sri Lanka’s multicultural heritage.",
+    "Nalanda Gedige - An ancient and mysterious structure near Matale blending Hindu and Buddhist architecture, believed to be over a thousand years old.",
+    "Stay in comfort with our 3–4 star hotel accommodations."
+  ]
+},
+{
+  day: "Day 4",
+  title: "Nuwara Eliya via Ramboda Falls",
+  activities: [
+    "Royal Botanical Garden - Explore over 4,000 plant species in one of Asia’s finest botanical gardens.",
+    "Ambuluwawa Tower - Enjoy a gentle hike to the tower for 360° views of mountains, forests, rivers, and Kandy town.",
+    "Bluefield Tea Factory - Visit one of Nuwara Eliya’s popular tea factories and learn about the production of world-famous Ceylon tea.",
+    "Ramboda Falls View Point - Admire the spectacular landscapes of Ramboda Falls, surrounded by highlands, ridges, streams, and hills.",
+    "Stay in comfort with our 3–4 star hotel accommodations."
+  ]
+},
+{
+  day: "Day 5",
+  title: "Ella Adventures",
+  activities: [
+    "Nine Arches Bridge - Visit the majestic Nine Arch Bridge between Ella and Demodara, an early 20th-century engineering marvel.",
+    "Lake Gregory - Spanning 225 acres, Lake Gregory is perfect for water activities and picnics in Nuwara Eliya.",
+    "Little Adam's Peak - Hike 1141 m to the summit in 30-45 minutes for incredible 360° panoramic views with rolling clouds.",
+    "Stay in comfort with our 3–4 star hotel accommodations."
+  ]
+},
+{
+  day: "Day 6",
+  title: "Yala National Park & Ravana Falls",
+  activities: [
+    "Yala National Park - Spot 44 mammal species and 215 bird species, including the world’s largest concentration of leopards.",
+    "Ravana Falls - Explore the legendary Ravana Falls, where it is believed King Ravana hid Sita in a cave after abducting her, according to the epic Ramayan.",
+    "Stay in comfort with our 3–4 star hotel accommodations."
+  ]
+},
+{
+  day: "Day 7",
+  title: "Mirissa & Departure",
+  activities: [
+    "Coconut Tree Hill - Visit this iconic spot in Mirissa, set within a private coconut estate and popular on travelers’ Instagram profiles.",
+    "Weligama Beach - Enjoy the long sandy beach with gentle waves, perfect for surfing with more than 100 surf schools nearby.",
+    "Galle Dutch Fort - Explore the historic fort built by the Portuguese in 1588 and expanded by the Dutch in the 17th century, now a lively coastal community.",
+    "River Safari Bentota - Discover the biodiversity-rich Bentota River, lined with dense freshwater mangroves."
+  ]
+}
+    
+  ],
+    included: [
+      "Air-Conditioned Private Vehicle",
+      "English Speaking Professional Driver",
+      "Driver's Accommodation & Meals",
+      "Pickup & Drop Off",
+      "Fuel & Parking Fees",
+      "24 Hours Service",
+      "Unlimited Mileage/Kilometer for entire round tour",
+      "Your Accommodation",
+    ],
+    excluded: [
+      "Food & Drinks",
+      "Entrance & Activities Fees"
+    ]
+  },
+};
+
+
+const params = new URLSearchParams(window.location.search);
+const tourId = params.get("tour");
+const tour = tours[tourId];
+
+if (!tour) return;
+
+document.getElementById("tourImage").src = tour.image;
+document.getElementById("tourTitle").innerText = tour.title;
+document.getElementById("tourDuration").innerText = tour.duration;
+document.getElementById("tourPeople").innerText = tour.people;
+document.getElementById("tourPrice").innerText = tour.price;
+document.getElementById("tourType").innerText = tour.type;
+document.getElementById("tourDescription").innerText = tour.description;
+const planContainer = document.getElementById("tourPlan");
+
+tour.plan.forEach(day => {
+  let activitiesHTML = "";
+
+  day.activities.forEach(act => {
+    activitiesHTML += `<li>${act}</li>`;
+  });
+
+  planContainer.innerHTML += `
+    <div class="tour-day">
+      <strong>${day.day}: ${day.title}</strong>
+      <ul>${activitiesHTML}</ul>
+    </div>
+  `;
+});
+
+// Included
+tour.included.forEach(item => {
+  document.getElementById("includedList").innerHTML +=
+    `<li><i class="fa fa-check-circle"></i>${item}</li>`;
+});
+
+// Excluded
+tour.excluded.forEach(item => {
+  document.getElementById("excludedList").innerHTML +=
+    `<li><i class="fa fa-times-circle"></i>${item}</li>`;
+});
+
+});
+</script>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/94713010652" class="whatsapp-float" target="_blank">
+    <i class="fa fa-whatsapp"></i>
+</a>
+<!-- Floating Facebook Button -->
+<a href="https://www.facebook.com/profile.php?id=61577853503752&rdid=8k3phbPFiLXFEXVa&share_url=https%3A%2F%2Fweb.facebook.com%2Fshare%2F1JJ7qtQ7Vm%2F%3F_rdc%3D1%26_rdr#"
+   class="facebook-float"
+   target="_blank"
+   aria-label="Facebook">
+   <i class="fa fa-facebook"></i>
+</a>
+</body>
+</html>
