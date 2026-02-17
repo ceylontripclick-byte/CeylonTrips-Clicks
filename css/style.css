@@ -444,7 +444,7 @@ li > a:only-child:after { content: ''; }
 
 /*-- banner --*/
 .banner {
-    background: url(../images/home.jpg)no-repeat center;
+    background: url(../images/home.jpeg)no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -2403,4 +2403,5 @@ h1, h2, h3, h4 {
 html {
   scroll-behavior: smooth;
 }
+
 
